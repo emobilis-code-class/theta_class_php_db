@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My Shop | Add Product</title>
+	<title>My Shop | Edit Product</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 <body>
 	<div class="container-fluid">
-		<?php include('nav.php')?>
+		<?php 
+			include('nav.php');
+			$productId = $_GET['id'];
+			//echo "$productId";
 
+			//fetch products based on the id
+			require_once('dbConnect.php');
+			$sql = "SELECT * FROM product WHERE id=".$productId;
+			//execute query
+			$results = mysqli_query($conn,$sql);
+			if ($results) {
+				# code...
+				$product = mysqli_fetch_assoc($results);
+			}else{
+				echo "Something went wrong";
+			}
+		?>
+		<h3>Edit <?php echo $product['name']; ?></h3>
 		<div class="row">
 			<div class="col-4">
 				<!-- icon show add product -->
@@ -19,32 +35,34 @@
 				<form method="POST" action="">
 				  <div class="mb-3">
 				    <label for="exampleInputEmail1" class="form-label">Product Name</label>
-				    <input type="text" class="form-control" name="product_name" required>
+				    <input type="text" class="form-control" name="product_name" value="<?php echo $product['name']?>"required>
 				  </div>
 
 				  <div class="mb-3">
 				    <label for="exampleInputEmail1" class="form-label">Product Description</label>
-				    <input type="text" class="form-control" name="product_desc" required>
+				    <input type="text" class="form-control" name="product_desc" value="<?php echo $product['description']?>" required>
 				  </div>
+				  <input type="hidden" name="productId" value="<?php echo $product['id']?>">
 				  
 				  <div class="mb-3">
 				    <label for="exampleInputEmail1" class="form-label">Product Cost</label>
-				    <input type="number" class="form-control" name="product_cost" required>
+				    <input type="number" class="form-control" name="product_cost" value="<?php echo $product['cost']?>" required>
 				  </div>
 				 
-				  <button type="submit" name="save" class="btn btn-primary">Save</button>
+				  <button type="submit" name="save" class="btn btn-primary">Update</button>
 		</form>
 			</div>
 
 			<?php
 
-				require('dbConnect.php');
+				//require('dbConnect.php');
 				//capture form data
 			if (isset($_POST['save'])) {
 				# code...
 				$productName = $_POST['product_name'];
 				$productDesc = $_POST['product_desc'];
 				$productCost = $_POST['product_cost'];
+				$productId = $_POST['productId'];
 
 				//echo "$productName,$productDesc";
 				/*
@@ -54,7 +72,8 @@
 					3.Query Insert the db
 					4.Success
 				*/
-					$sql = "INSERT INTO product(name,description,cost) VALUES(?,?,?)";
+					//$sql = "INSERT INTO product(name,description,cost) VALUES(?,?,?)";
+					$sql = "UPDATE product SET name=?,description=?,cost=? WHERE id = ".$productId;
 
 					//prepare the query - is correct
 					if ($stmt = mysqli_prepare($conn,$sql)) {

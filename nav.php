@@ -6,7 +6,7 @@
     <a class="nav-link" href="addproduct.php">Add Product</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="viewproduct.php">View Product</a>
+    <a class="nav-link" href="viewproduct.php">My Products</a>
   </li>
   <li class="nav-item">
     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Register</a>
