@@ -6,7 +6,18 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<?php include('nav.php')?>
+		<?php 
+		  include('nav.php');
+
+			//before accessing you must be loggined
+			//I have your session
+			//session_start();
+			if (!isset($_SESSION['name'])) {
+				# code...
+				header("location:login.php");
+			}
+
+		?>
 
 		<div class="row">
 			<div class="col-4">

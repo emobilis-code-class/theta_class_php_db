@@ -7,7 +7,13 @@
 
 <body>
 	<div class="container-fluid">
-		<?php include('nav.php')?>
+		<?php include('nav.php');
+
+		if (!isset($_SESSION['name'])) {
+						# code...
+						header("location:login.php");
+					}
+		?>
 		<h1 >My Products</h1>
 
 		<div class="col-8">
