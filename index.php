@@ -42,6 +42,7 @@
 									    <p class="card-text">'.$record['description'].'
 									    	<h4 style="color:#E63105;"> '.$record['cost'].'/=</h4>
 									    </p>
+									    <a href="buyproduct.php?id='.$record['id'].'" class="btn btn-primary">Buy Now</a>
 
 									  </div>
 									</div>

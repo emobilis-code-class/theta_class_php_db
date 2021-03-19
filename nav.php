@@ -8,6 +8,10 @@
   <li class="nav-item">
     <a class="nav-link" href="viewproduct.php">My Products</a>
   </li>
+
+   <li class="nav-item">
+    <a class="nav-link" href="mypurchases.php">My Purchases</a>
+  </li>
  <!--  <li class="nav-item">
     <a class="nav-link" href="register.php" tabindex="-1" aria-disabled="true">Register</a>
   </li> -->

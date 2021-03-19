@@ -91,7 +91,8 @@
 											key - 
 											value
 										*/
-										$_SESSION['name']=$fullname;
+										$_SESSION['name']=$fullname; //name
+										$_SESSION['id'] = $record['id'];
 
 
 										header('location:index.php');

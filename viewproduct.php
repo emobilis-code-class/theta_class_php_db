@@ -11,8 +11,8 @@
 
 		if (!isset($_SESSION['name'])) {
 						# code...
-						header("location:login.php");
-					}
+				header("location:login.php");
+			}
 		?>
 		<h1 >My Products</h1>
 
